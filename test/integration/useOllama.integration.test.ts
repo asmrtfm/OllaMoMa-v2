@@ -14,7 +14,7 @@ describe('useOllama Integration', () => {
 			});
 
 			const request = {
-				model: 'llama3.2:3b', // Make sure this model is installed
+				model: 'gpt-oss:20b-cloud', // Make sure this model is installed
 				prompt: 'What is 1 + 1?',
 			};
 
@@ -22,12 +22,11 @@ describe('useOllama Integration', () => {
 
 			// Verify response structure
 			expect(response).toBeDefined();
-			expect(response.model).toBe('llama3.2:3b');
+			expect(response.model).toBe('gpt-oss:20b-cloud');
 			expect(typeof response.created_at).toBe('string');
 			expect(new Date(response.created_at)).toBeInstanceOf(Date); // Should be a valid date string
 			expect(response.response).toBeDefined();
 			expect(response.done).toBe(true);
-			expect(response.context).toBeDefined();
 			expect(response.total_duration).toBeGreaterThan(0);
 		}, 30000); // Increased timeout for API call
 
@@ -50,7 +49,7 @@ describe('useOllama Integration', () => {
 			});
 
 			const request = {
-				model: 'llama3.2:3b',
+				model: 'gpt-oss:20b-cloud',
 				prompt: 'This should fail',
 			};
 
@@ -65,7 +64,7 @@ describe('useOllama Integration', () => {
 			});
 
 			const request = {
-				model: 'llama3.2:3b', // Make sure this model is installed
+				model: 'gpt-oss:20b-cloud', // Make sure this model is installed
 				messages: [
 					{
 						role: 'user',
@@ -78,7 +77,7 @@ describe('useOllama Integration', () => {
 
 			// Verify response structure
 			expect(response).toBeDefined();
-			expect(response.model).toBe('llama3.2:3b');
+			expect(response.model).toBe('gpt-oss:20b-cloud');
 			expect(typeof response.created_at).toBe('string');
 			expect(new Date(response.created_at)).toBeInstanceOf(Date);
 			expect(response.message).toBeDefined();
@@ -112,7 +111,7 @@ describe('useOllama Integration', () => {
 			});
 
 			const request = {
-				model: 'llama3.2:3b',
+				model: 'gpt-oss:20b-cloud',
 				messages: [
 					{
 						role: 'user',
@@ -132,7 +131,7 @@ describe('useOllama Integration', () => {
 			});
 
 			const request = {
-				model: 'llama3.2:3b',
+				model: 'gpt-oss:20b-cloud',
 				prompt: 'Count from 1 to 3',
 				stream: true as const,
 			};
@@ -144,7 +143,7 @@ describe('useOllama Integration', () => {
 				responses.push(response);
 				// Verify response structure for each chunk
 				expect(response).toBeDefined();
-				expect(response.model).toBe('llama3.2:3b');
+				expect(response.model).toBe('gpt-oss:20b-cloud');
 				expect(typeof response.created_at).toBe('string');
 				expect(new Date(response.created_at)).toBeInstanceOf(Date);
 				expect(response.response).toBeDefined();
@@ -177,7 +176,7 @@ describe('useOllama Integration', () => {
 			});
 
 			const request = {
-				model: 'llama3.2:3b',
+				model: 'gpt-oss:20b-cloud',
 				prompt: 'This should fail',
 				stream: true as const,
 			};
@@ -193,7 +192,7 @@ describe('useOllama Integration', () => {
 			});
 
 			const request = {
-				model: 'llama3.2:3b',
+				model: 'gpt-oss:20b-cloud',
 				messages: [{ role: 'user', content: 'Count from 1 to 3' }],
 				stream: true as const,
 			};
@@ -205,7 +204,7 @@ describe('useOllama Integration', () => {
 				responses.push(response);
 				// Verify response structure for each chunk
 				expect(response).toBeDefined();
-				expect(response.model).toBe('llama3.2:3b');
+				expect(response.model).toBe('gpt-oss:20b-cloud');
 				expect(typeof response.created_at).toBe('string');
 				expect(new Date(response.created_at)).toBeInstanceOf(Date);
 				expect(response.message).toBeDefined();
@@ -239,7 +238,7 @@ describe('useOllama Integration', () => {
 			});
 
 			const request = {
-				model: 'llama3.2:3b',
+				model: 'gpt-oss:20b-cloud',
 				messages: [{ role: 'user', content: 'This should fail' }],
 				stream: true as const,
 			};

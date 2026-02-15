@@ -4,22 +4,44 @@ import { createPinia, setActivePinia } from 'pinia';
 import type { GenerateResponse, ChatResponse } from 'ollama/browser';
 
 // Mock the Ollama class
-const mockGenerate = vi.fn();
-const mockChat = vi.fn();
-const mockList = vi.fn();
-const mockShow = vi.fn();
-const mockCopy = vi.fn();
-const mockDelete = vi.fn();
+const {
+	MockOllama,
+	mockGenerate,
+	mockChat,
+	mockList,
+	mockShow,
+	mockCopy,
+	mockDelete,
+} = vi.hoisted(() => {
+	const mockGenerate = vi.fn();
+	const mockChat = vi.fn();
+	const mockList = vi.fn();
+	const mockShow = vi.fn();
+	const mockCopy = vi.fn();
+	const mockDelete = vi.fn();
+
+	class MockOllama {
+		generate = mockGenerate;
+		chat = mockChat;
+		list = mockList;
+		show = mockShow;
+		copy = mockCopy;
+		delete = mockDelete;
+	}
+
+	return {
+		MockOllama,
+		mockGenerate,
+		mockChat,
+		mockList,
+		mockShow,
+		mockCopy,
+		mockDelete,
+	};
+});
 
 vi.mock('ollama/browser', () => ({
-	Ollama: vi.fn().mockImplementation(() => ({
-		generate: mockGenerate,
-		chat: mockChat,
-		list: mockList,
-		show: mockShow,
-		copy: mockCopy,
-		delete: mockDelete,
-	})),
+	Ollama: MockOllama,
 }));
 
 describe('useOllama', () => {
